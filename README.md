@@ -1,5 +1,6 @@
 # gen_report
-A quick, customizeable report generator for HackeOne coded in PHP. Increases productivity &amp; efficiency.
+### about
+A quick, customizeable report generator for HackeOne coded in PHP. Increases productivity &amp; efficiency. Default password is `hackerone`
 
-## requirements
+### requirements
 Any server running php.
