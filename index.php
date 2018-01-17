@@ -8,16 +8,22 @@
   session_start();
 
   foreach($_REQUEST as $request)
+  {
     if(is_array($request))
+    {
       die();
+    }
+  }
 
   $setpass  = "hackerone";
-  $password = (isset($_REQUEST['pass'])) ? $_REQUEST['pass'] : "";
+  $password = (isset($_REQUEST["pass"])) ? $_REQUEST["pass"] : "";
   $correct  = ($password == $setpass) ? 1 : 0;
-  $php_self = htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8');
+  $php_self = htmlentities($_SERVER["PHP_SELF"], ENT_QUOTES, "UTF-8");
 
   if($password == $setpass)
-    $_SESSION['user'] = $password;
+  {
+    $_SESSION["user"] = $password;
+  }
 
 ?><!DOCTYPE html>
 <html>
@@ -28,11 +34,13 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <style>
 
-      body {
+      body
+      {
         font-family: "Source Sans Pro";
         background-color: white;
       }
-      a {
+      a
+      {
         color: black;
         text-decoration: none;
       }
@@ -41,7 +49,7 @@
 
   </head>
 
-  <?php if(isset($_SESSION['user'])) { ?>
+  <?php if(isset($_SESSION["user"])) { ?>
 
   <body>
     <center>
@@ -64,12 +72,12 @@
 
   }
 
-  if(isset($_POST['gen'])) {
-
-  	$title = (isset($_POST['title']))    ? htmlentities($_POST['title'])    : "";
-  	$host  = (isset($_POST['host']))     ? htmlentities($_POST['host'])     : "";
-  	$param = (isset($_POST['param']))    ? htmlentities($_POST['param'])    : "";
-  	$full  = (isset($_POST['full_url'])) ? htmlentities($_POST['full_url']) : "";
+  if(isset($_POST["gen"]))
+  {
+    $title = (isset($_POST["title"]))    ? htmlentities($_POST["title"])    : "";
+    $host  = (isset($_POST["host"]))     ? htmlentities($_POST["host"])     : "";
+    $param = (isset($_POST["param"]))    ? htmlentities($_POST["param"])    : "";
+    $full  = (isset($_POST["full_url"])) ? htmlentities($_POST["full_url"]) : "";
 
 ?>
 
@@ -103,12 +111,17 @@
 
   }
 
-  if(isset($_GET['logout'])) {
-    $_SESSION = [];
+  if(isset($_GET["logout"]))
+  {
+    foreach($_SESSION as $key => $value)
+    {
+      unset($_SESSION[$key]);
+    }
+
     die(header("Location: $php_self"));
   }
 
-  if(!isset($_SESSION['user'])) {
+  if(!isset($_SESSION["user"])) {
 
 ?><body>
 
