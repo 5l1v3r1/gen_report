@@ -1,8 +1,8 @@
 <?php
 
   /* HackerOne report generator
-   * @author Corben Douglas, Damian Ebelties
-   * @url https://github.com/sxcurity/gen_report
+   * @author Corben Leo, Damian Ebelties
+   * @url https://github.com/C0RB3N/gen_report
    */
 
   session_start();
